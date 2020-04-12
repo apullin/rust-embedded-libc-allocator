@@ -26,12 +26,7 @@ In `rustlib_string_test`, you will see that manipulating a Rust String into a C-
 
 For the sake of keeping things lean, this example does not go as far as setting up a UART for printf or printing via debugger semihosting, so the success of the operations will have to be observed by viewing the heap memory directly with your debugger.
 
-*NOTE*: As of now, building this example for the Cortex-M0 requires pending changes to the `cstr_core` crate.
-That crate works fine on Cortex M3, M4, and M7 because there is instruction-level support for atomic operations, and thus Arc<T>
-operations defined in `cstr_core` \
-TODO: edit this one the `cstr_core` PR is merged and the dependency is changed to version 0.1.3
-
-The demonstration also includes a "torture test" for larger allocations, and several approaches to allocation from within Rust.
+The demonstration also includes a "torture test"  in the main loop for larger allocations, and several approaches to achieveing allocation from within the Rust code.
 
 ### Code
 

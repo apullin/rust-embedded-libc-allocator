@@ -14,9 +14,12 @@ cortex-m-semihosting = "0.3.5"
 panic-halt = "0.2.0"
 stm32l0 = "0.10.0"
 
+#The "arc" feature must be disabled in cstr_core, since Cortex M0 has no instruction-level support
+# for atomic operations.
 [dependencies.cstr_core]
-version = "0.1.2"
-path = "/Users/andrewpullin/personal/rust/cstr_core"
+version = "0.2.0"
+default-features = false
+# Note: we must not enable "arc" feature here for Cortex M0, since thumbv6 has no atomic operations
 features = ["alloc"]
 
 [profile.release]
