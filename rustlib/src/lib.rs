@@ -13,9 +13,7 @@ extern crate cortex_m;
 // Import malloc and free from libc:
 #[link(name = "c")]
 extern "C" {
-    #[no_mangle]
     pub fn malloc( new_size: usize ) -> *mut u8;
-    #[no_mangle]
     pub fn free( ptr: *mut u8 );
 }
 

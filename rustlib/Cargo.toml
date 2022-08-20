@@ -8,16 +8,19 @@ name = "rust_statiblic_libc_allocator"
 crate-type = ["staticlib"]
 
 [dependencies]
-cortex-m = "0.6.2"
-cortex-m-rt = "0.6.12"
-cortex-m-semihosting = "0.3.5"
+cortex-m = "0.7.6"
+cortex-m-rt = "0.7.1"
+cortex-m-semihosting = "0.5.0"
 panic-halt = "0.2.0"
-stm32l0 = "0.10.0"
+
+[dependencies.stm32l0]
+version = "0.15.1"
+features = ["stm32l0x2"]
 
 #The "arc" feature must be disabled in cstr_core, since Cortex M0 has no instruction-level support
 # for atomic operations.
 [dependencies.cstr_core]
-version = "0.2.0"
+version = "0.2.6"
 default-features = false
 # Note: we must not enable "arc" feature here for Cortex M0, since thumbv6 has no atomic operations
 features = ["alloc"]
