@@ -1,0 +1,30 @@
+name: Project Build CI
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: tools setup
+      run: |
+        sudo apt update && sudo apt upgrade -y & rustup default nightly && \
+        sudo apt install curl -y  && \
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y  && \
+        rustup default nightly  && \
+        rustup target add thumbv6m-none-eabi  && \
+        cargo install cargo-binutils  && \
+        rustup component add llvm-tools-preview  && \
+        cargo install cargo-generate  && \
+        wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2  && \
+        sudo tar xjf gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2 -C /usr/local/  && \
+        export PATH=$PATH:/usr/local/gcc-arm-none-eabi-10.3-2021.10/bin/
+    - name: make
+      run: export PATH=$PATH:/usr/local/gcc-arm-none-eabi-10.3-2021.10/bin/ && make
