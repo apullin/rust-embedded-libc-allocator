@@ -1,3 +1,5 @@
+![](https://github.com/apullin/rust-embedded-libc-allocator/actions/workflows/c-cpp.yml/badge.svg)
+
 Embedded Rust staticlib with libc allocation
 =========
 
